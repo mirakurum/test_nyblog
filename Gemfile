@@ -8,6 +8,9 @@ end
 gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
 gem 'jquery-rails'
 gem 'rails-i18n'
+gem 'carrierwave', '~> 1.0'
+gem "mini_magick"
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.2'
