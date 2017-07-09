@@ -8,3 +8,5 @@ ru:
         summary: 'Краткая суть'
         body: 'Содержание'
         all_tags: 'Теги'
+      category:
+        name: 'Название'
