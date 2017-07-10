@@ -11,7 +11,7 @@
   <body>
   <div class="container">
     <nav class="navbar navbar-light bg-faded">
-      <ul class="nav nav-tabs">
+      <ul class="nav nav-tabs ">
         <li class="nav-item <%= 'active' if current_page?(root_path) || current_page?(posts_path) %>">
           <a class="nav-link" href="<%= posts_path %> ">Все статьи</a>
         </li>
@@ -21,7 +21,27 @@
             </li>
         <% end %>
       </ul>
+      <% if user_signed_in? %>
       <%= link_to 'Новая статья', new_post_path, class: 'btn btn-outline-primary pull-xs-right' %>
+      <% end %>
+
+      <ul class="nav nav-tabs pull-xs-right">
+        <% if user_signed_in? %>
+            <li class="nav-item">
+              <%= link_to "Hello, " + current_user.email, edit_user_registration_path, class: "nav-link"  %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Выход", destroy_user_session_path, method: :delete, class: "nav-link" %>
+            </li>
+        <% else %>
+            <li class="nav-item">
+              <%= link_to "Вход", new_user_session_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Регистрация", new_user_registration_path, class: "nav-link" %>
+            </li>
+        <% end %>
+      </ul>
     </nav>
   </div>
 
@@ -29,7 +49,8 @@
     <div class="row">
       <div class="col-md-12">
         <%	 flash.each do |name, message| %>
-          <div class="alert alert-<%= name %>">
+            <div class="alert <%= bootstrap_class_for(name) %>">
+              <button class="close" data-dismiss="alert">&times;</button>
             <%=	 message %>
           </div>
         <% end %>
